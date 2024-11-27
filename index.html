@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <!---<script src="https://kit.fontawesome.com/f00390be20.js" crossorigin="anonymous"></script>--->
+    <title>Guardería</title>
+</head>
+
+<body onload="cargarCondiciones(); cargarRoles(); cargarRubros(); cargarMarcas(); cargarTipoJuguetes(); cargarCategorias(); cargarTipoUsuarios(); cargarTipoDonaciones();">
+    <header>
+        <h3>Guardería Pequeños Gigantes</h3>
+        <button id="logoutButton" class="cerrar-sesion">Cerrar sesión</button>
+    </header>
+
+    <main>
+        <aside>
+            <button class="people" id="people">Personas</button>
+            <button class="stock" id="stock">Inventario</button>
+            <button class="users" id="users">Usuarios</button>
+        </aside>
+        <section class="second-sect">
+            <div class="people-content disabled" id="people-content">
+                <button class="infants" id="infants">Infantes</button>
+                <button class="tutors" id="tutors">Tutores</button>
+                <button class="collaborators" id="collaborators">Colaboradores</button>
+                <button class="staff" id="staff">Personal</button>
+            </div>
+            <div class="stock-content disabled" id="stock-content">
+                <button class="food" id="food">Alimentos</button>
+                <button class="toys" id="toys">Juguetes</button>
+                <button class="books" id="books">Libros</button>
+                <button class="donations" id="donations">Donaciones</button>
+            </div>
+            <div class="users-content disabled" id="users-content">
+                <button class="user" id="user">Usuarios</button>
+                <button class="type" id="type">Tipos</button>
+            </div>
+        </section>
+
+        <section class="people-infant-sect disabled" id="people-infant-sect">
+            <button class="infant-btn" id="infant-btn">Infantes</button>
+            <button class="infant-condition-btn" id="infant-condition-btn">Condiciones</button>
+        </section>
+        <section class="people-tutor-sect disabled" id="people-tutor-sect">
+            <button class="tutor-btn" id="tutors-btn">Tutores</button>
+        </section>
+        <section class="people-collaborator-sect disabled" id="people-collaborator-sect">
+            <button class="collaborator-btn" id="collaborator-btn">Colaboradores</button>
+        </section>
+        <section class="people-staff-sect disabled" id="people-staff-sect">
+            <button class="staff-btn" id="staff-btn">Personal</button>
+            <button class="staff-type-btn" id="staff-type-btn">Roles</button>
+        </section>
+
+        <section class="stock-food-sect disabled" id="stock-food-sect">
+            <button class="food-btn" id="food-btn">Alimentos</button>
+            <button class="food-category-btn" id="food-category-btn">Rubros</button>
+            <button class="food-brands-btn" id="food-brands-btn">Marcas</button>
+            <button class="food-preparations-btn" id="food-preparations-btn">Preparaciones</button>
+        </section>
+        <section class="stock-toys-sect disabled" id="stock-toys-sect">
+            <button class="toys-btn" id="toys-btn">Juguetes</button>
+            <button class="toys-type-btn" id="toys-type-btn">Tipo</button>
+        </section>
+        <section class="stock-books-sect disabled" id="stock-books-sect">
+            <button class="books-btn" id="books-btn">Libros</button>
+            <button class="books-ages-btn" id="books-ages-btn">Categorías</button>
+        </section>
+        <section class="stock-donations-sect disabled" id="stock-donations-sect">
+            <button class="donation-btn" id="donation-btn">Donaciones</button>
+            <button class="donation-type-btn" id="donation-type-btn">Tipos</button>
+            <button class="donation-outputs-btn" id="donation-outputs-btn">Salidas</button>
+        </section>
+
+<!-------------------------SECCIÓN DE INFANTES------------------------->
+<!-------------------------Formulario de ingreso Infantes------------------------->
+<div class="container disabled" id="container-infante">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-infante">
+            <ul>
+                <li class="ul-title">INFANTES</li>
+                <li>
+                    <span class="point" id="point-infante"></span>
+                    <button onclick="selectSection('infante')" id="side-infant">Infante</button>
+                </li>
+                <li>
+                    <span class="point" id="point-tutores"></span>
+                    <button onclick="selectSection('tutores')" id="side-infant-tutor">Tutores</button>
+                </li>
+                <li>
+                    <span class="point" id="point-emergencias"></span>
+                    <button onclick="selectSection('emergencias')" id="side-emergency">Emergencias</button>
+                </li>
+                <li>
+                    <span class="point" id="point-permisos"></span>
+                    <button onclick="selectSection('permisos')" id="side-permissions">Permisos</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('infante')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-inf" onclick="botonModificar('infante')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarInfantes(document.getElementById('idinfante').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarDatos()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-infante">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-inf')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-inf">
+                <button class="close-filter" onclick="closeFilter('filter-inf')">✖</button>
+                <label class="label-buscar" for="search_inp_inf">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_inf">
+                <div class="result" id="result_inf">
+                    <ul class="searchResults" id="searchResults_inf">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idinfante">ID Infante</label>
+                    <input type="number" id="idinfante">
+                </div>
+                <div class="form-field">
+                    <label for="nombreinfante">Nombre</label>
+                    <input type="text" id="nombreinfante">
+                </div>
+                <div class="form-field">
+                    <label for="apellidoinfante">Apellido</label>
+                    <input type="text" id="apellidoinfante">
+                </div>
+                <div class="form-field">
+                    <label for="dniinfante">DNI</label>
+                    <input type="number" id="dniinfante">
+                </div>
+                <div class="form-field">
+                    <label for="generoinfante">Género</label>
+                    <input type="text" id="generoinfante">
+                </div>
+                <div class="form-field">
+                    <label for="direccioninfante">Dirección</label>
+                    <input type="text" id="direccioninfante">
+                </div>
+                <div class="form-field">
+                    <label for="fecha-nacimientoinfante">Fecha de nacimiento</label>
+                    <input type="date" id="fecha-nacimientoinfante">
+                </div>
+            </div>
+        </div>
+
+        <!-------------------------Formulario de ingreso Infantes-Tutores------------------------->
+        <div class="form-container disabled" id="form-container-tutores">
+            <button class="close-button" onclick="closeForm()">✖</button>
+            <div class="form">
+                <div class="form-field">
+                    <label for="idtutores">ID Tutor</label>
+                    <input type="number" id="idtutores">
+                </div>
+                <div class="form-field">
+                    <label for="nombretutores">Nombre</label>
+                    <input type="text" id="nombretutores">
+                </div>
+                <div class="form-field">
+                    <label for="apellidotutores">Apellido</label>
+                    <input type="text" id="apellidotutores">
+                </div>
+                <div class="form-field">
+                    <label for="dnitutores">DNI</label>
+                    <input type="number" id="dnitutores">
+                </div>
+                <div class="form-field">
+                    <label for="relacion-infantetutores">Relación con el infante</label>
+                    <input type="text" id="relacion-infantetutores">
+                </div>
+            </div>
+        </div>
+
+        <!-------------------------Formulario de ingreso Infantes-Emergencias------------------------->
+        <div class="form-container disabled" id="form-container-emergencias">
+            <button class="close-button" onclick="closeForm()">✖</button>
+            <div class="form">
+                <div class="form-field">
+                    <label for="seguroemergencias">Obra Social</label>
+                    <input type="text" id="seguroemergencias">
+                </div>
+                <div class="form-field">
+                    <label for="medicoemergencias">Médico de cabecera</label>
+                    <input type="text" id="medicoemergencias">
+                </div>
+                <div class="form-field">
+                    <label for="hospitalemergencias">Hospital de preferencia</label>
+                    <input type="text" id="hospitalemergencias">
+                </div>
+                <div class="form-field">
+                    <label for="condicionemergencias">Condición médica</label>
+                    <select id="condicionemergencias"></select>
+                </div>
+                <div class="form-field">
+                    <label for="medicacionemergencias">Medicación que toma</label>
+                    <input type="text" id="medicacionemergencias">
+                </div>
+            </div>
+        </div>
+
+        <!-------------------------Formulario de ingreso Infantes-Permisos------------------------->
+        <div class="form-container disabled" id="form-container-permisos">
+            <button class="close-button" onclick="closeForm()">✖</button>
+            <div class="form">
+                <div class="form-field">
+                    <label for="autorizacion1">Recibir primeros auxilios</label>
+                    <input type="text" id="autorizacion1">
+                </div>
+                <div class="form-field">
+                    <label for="autorizacion2">Recibir atención médica</label>
+                    <input type="text" id="autorizacion2">
+                </div>
+                <div class="form-field">
+                    <label for="autorizacion3">Tomar y usar fotografías del infante
+                        (redes)</label>
+                    <input type="text" id="autorizacion3">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------Formulario de ingreso Condiciones------------------------->
+<div class="container disabled" id="container-conditions">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-conditions">
+            <ul>
+                <li class="ul-title">CONDICIONES</li>
+                <li>
+                    <span class="point" id="point-conditions"></span>
+                    <button onclick="selectSection('conditions')" id="side-condition">Condición</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('conditions')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-cond" onclick="botonModificar('conditions')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarCondiciones(document.getElementById('idcondition').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarCondiciones()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-condition">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-cond')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-cond">
+                <button class="close-filter" onclick="closeFilter('filter-cond')">✖</button>
+                <label class="label-buscar" for="search_inp_cond">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_cond">
+                <div class="result" id="result_cond">
+                    <ul class="searchResults" id="searchResults_cond">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idcondition">ID Condición</label>
+                    <input type="number" id="idcondition">
+                </div>
+                <div class="form-field">
+                    <label for="descripcioncondition">Descripción</label>
+                    <input type="text" id="descripcioncondition">
+                </div>
+                <div class="form-field">
+                    <label for="notascondition">Anotaciones</label>
+                    <textarea name="notascondition" maxlength="500" id="notascondition" class="Notas"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------SECCIÓN DE TUTORES------------------------->
+<!-------------------------Formulario de ingreso Tutores------------------------->
+<div class="container disabled" id="container-tutor">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-tutor">
+            <ul>
+                <li class="ul-title">TUTORES</li>
+                <li>
+                    <span class="point" id="point-tutor"></span>
+                    <button onclick="selectSection('tutor')" id="side-tutor">Tutor</button>
+                </li>
+                <li>
+                    <span class="point" id="point-tutorcontact"></span>
+                    <button onclick="selectSection('tutorcontact')" id="side-tutorcontact">Contacto</button>
+                </li>
+                <li>
+                    <span class="point" id="point-tutorlabor"></span>
+                    <button onclick="selectSection('tutorlabor')" id="side-tutorlabor">Info laboral</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('tutor')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-tut" onclick="botonModificar('tutor')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarTutores(document.getElementById('idtutor').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarTutores()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-tutor">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-tut')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-tut">
+                <button class="close-filter" onclick="closeFilter('filter-tut')">✖</button>
+                <label class="label-buscar" for="search_inp_tut">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_tut">
+                <div class="result" id="result_tut">
+                    <ul class="searchResults" id="searchResults_tut">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idtutor">ID Tutor</label>
+                    <input type="number" id="idtutor">
+                </div>
+                <div class="form-field">
+                    <label for="nombretutor">Nombre</label>
+                    <input type="text" id="nombretutor">
+                </div>
+                <div class="form-field">
+                    <label for="apellidotutor">Apellido</label>
+                    <input type="text" id="apellidotutor">
+                </div>
+                <div class="form-field">
+                    <label for="dnitutor">DNI</label>
+                    <input type="number" id="dnitutor">
+                </div>
+                <div class="form-field">
+                    <label for="relacion-infantetutor">Relación con el infante</label>
+                    <input type="text" id="relacion-infantetutor">
+                </div>
+                <div class="form-field">
+                    <label for="idinfantetutor">ID del infante</label>
+                    <input type="number" id="idinfantetutor">
+                </div>  
+            </div>
+        </div>
+
+<!-------------------------Formulario de ingreso Tutores-Información de contacto------------------------->
+        <div class="form-container disabled" id="form-container-tutorcontact">
+            <button class="close-button" onclick="closeForm()">✖</button>
+            <div class="form">
+                <div class="form-field">
+                    <label for="direcciontutorcontact">Dirección</label>
+                    <input type="text" id="direcciontutorcontact">
+                </div>
+                <div class="form-field">
+                    <label for="correotutorcontact">Correo electrónico (opc)</label>
+                    <input type="email" id="correotutorcontact">
+                </div>
+                <div class="form-field">
+                    <label for="numbertutorcontact">Número de teléfono</label>
+                    <input type="number" id="numbertutorcontact">
+                </div>
+                <div class="form-field">
+                    <label for="numberaltertutorcontact">Número alternativo (opc)</label>
+                    <input type="number" id="numberaltertutorcontact">
+                </div>
+            </div>
+        </div>
+
+<!-------------------------Formulario de ingreso Tutores-Información laboral------------------------->
+        <div class="form-container disabled" id="form-container-tutorlabor">
+            <button class="close-button" onclick="closeForm()">✖</button>
+            <div class="form">
+                <div class="form-field">
+                    <label for="ocupaciontutorlabor">Ocupación</label>
+                    <input type="text" id="ocupaciontutorlabor">
+                </div>
+                <div class="form-field">
+                    <label for="empresatutorlabor">Empresa/Empleador</label>
+                    <input type="text" id="empresatutorlabor">
+                </div>
+                <div class="form-field">
+                    <label for="direcciontutorlabor">Dirección</label>
+                    <input type="text" id="direcciontutorlabor">
+                </div>
+                <div class="form-field">
+                    <label for="numbertutorlabor">Número de teléfono</label>
+                    <input type="number" id="numbertutorlabor">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------SECCIÓN DE COLABORADORES------------------------->
+<!-------------------------Formulario de ingreso Colaboradores------------------------->
+<div class="container disabled" id="container-collaborator">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-collaborator">
+            <ul>
+                <li class="ul-title" id="colab">COLABORADORES</li>
+                <li>
+                    <span class="point" id="point-collaborator"></span>
+                    <button onclick="selectSection('collaborator')" id="side-collaborator">Colaborador</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('collaborator')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-colab"  onclick="botonModificar('collaborator')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarColaboradores(document.getElementById('idcollaborator').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarColaboradores()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-collaborator">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-colab')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-colab">
+                <button class="close-filter" onclick="closeFilter('filter-colab')">✖</button>
+                <label class="label-buscar" for="search_inp_colab">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_colab">
+                <div class="result" id="result_colab">
+                    <ul class="searchResults" id="searchResults_colab">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idcollaborator">ID Colaborador</label>
+                    <input type="number" id="idcollaborator">
+                </div>
+                <div class="form-field">
+                    <label for="nombrecollaborator">Nombre</label>
+                    <input type="text" id="nombrecollaborator">
+                </div>
+                <div class="form-field">
+                    <label for="apellidocollaborator">Apellido</label>
+                    <input type="text" id="apellidocollaborator">
+                </div>
+                <div class="form-field">
+                    <label for="dnicollaborator">DNI</label>
+                    <input type="number" id="dnicollaborator">
+                </div>
+                <div class="form-field">
+                    <label for="direccioncollaborator">Dirección</label>
+                    <input type="text" id="direccioncollaborator">
+                </div>
+                <div class="form-field">
+                    <label for="numerocollaborator">Número de teléfono</label>
+                    <input type="number" id="numerocollaborator">
+                </div>
+                <div class="form-field">
+                    <label for="correocollaborator">Correo electrónico (opc)</label>
+                    <input type="email" id="correocollaborator">
+                </div>
+                <div class="form-field">
+                    <label for="tipocollaborator">Tipo de colaborador</label>
+                    <input type="text" id="tipocollaborator">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------SECCIÓN DE PERSONAL------------------------->
+<!-------------------------Formulario de ingreso Personal------------------------->
+<div class="container disabled" id="container-personal">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-personal">
+            <ul>
+                <li class="ul-title">PERSONAL</li>
+                <li>
+                    <span class="point" id="point-personal"></span>
+                    <button onclick="selectSection('personal')" id="side-personal">Personal</button>
+                </li>
+                <li>
+                    <span class="point" id="point-horarios"></span>
+                    <button onclick="selectSection('horarios')" id="side-horarios">Horarios</button>
+                </li>
+                <li>
+                    <span class="point" id="point-infoadicional"></span>
+                    <button onclick="selectSection('infoadicional')" id="side-infoadicional">Info Adicional</button>
+                </li>
+                <li>
+                    <span class="point" id="point-vacaciones"></span>
+                    <button onclick="selectSection('vacaciones')" id="side-vacaciones">Vacaciones</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('personal')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-per" onclick="botonModificar('personal')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarPersonal(document.getElementById('idpersonal').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarPersonal()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-personal">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-per')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-per">
+                <button class="close-filter" onclick="closeFilter('filter-per')">✖</button>
+                <label class="label-buscar" for="search_inp_per">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_per">
+                <div class="result" id="result_per">
+                    <ul class="searchResults" id="searchResults_per">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idpersonal">ID Personal</label>
+                    <input type="number" id="idpersonal">
+                </div>
+                <div class="form-field">
+                    <label for="nombrepersonal">Nombre</label>
+                    <input type="text" id="nombrepersonal">
+                </div>
+                <div class="form-field">
+                    <label for="apellidopersonal">Apellido</label>
+                    <input type="text" id="apellidopersonal">
+                </div>
+                <div class="form-field">
+                    <label for="dnipersonal">DNI</label>
+                    <input type="number" id="dnipersonal">
+                </div>
+                <div class="form-field">
+                    <label for="direccionpersonal">Dirección</label>
+                    <input type="text" id="direccionpersonal">
+                </div>
+                <div class="form-field">
+                    <label for="correopersonal">Correo electrónico (opc)</label>
+                    <input type="email" id="correopersonal">
+                </div>
+                <div class="form-field">
+                    <label for="numberpersonal">Número de teléfono</label>
+                    <input type="number" id="numberpersonal">
+                </div>
+                <div class="form-field">
+                    <label for="puestopersonal">Puesto de trabajo</label>
+                    <select id="puestopersonal"> </select>
+                </div>
+            </div>
+        </div>
+
+        <!-------------------------Formulario de ingreso Personal-Horarios------------------------->
+        <div class="form-container disabled" id="form-container-personalhorarios">
+            <button class="close-button" onclick="closeForm()">✖</button>
+            <div class="form">
+                <div class="form-field">
+                    <label for="diaspersonalhorarios">Días laborales</label>
+                    <input type="text" id="diaspersonalhorarios">
+                </div>
+                <div class="form-field">
+                    <label for="iniciopersonalhorarios">Hora de inicio</label>
+                    <input type="time" id="iniciopersonalhorarios">
+                </div>
+                <div class="form-field">
+                    <label for="finalizacionpersonalhorarios">Hora de finalización</label>
+                    <input type="time" id="finalizacionpersonalhorarios">
+                </div>
+            </div>
+        </div>
+
+        <!-------------------------Formulario de ingreso Personal-Información adicional------------------------->
+        <div class="form-container disabled" id="form-container-personaladicional">
+            <button class="close-button" onclick="closeForm()">✖</button>
+            <div class="form condEmergencia">
+                <div class="form-field">
+                    <label for="condicionpersonaladicional">Condición médica</label>
+                    <input type="text" id="condicionpersonaladicional">
+                </div>
+                <div class="form-field">
+                    <label for="instruccionpersonaladicional">En caso de emergencia</label>
+                    <textarea name="instruccionpersonaladicional" maxlength="500" id="instruccionpersonaladicional" class="Notas"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-------------------------Formulario de ingreso Personal-Vacaciones------------------------->
+        <div class="form-container disabled" id="form-container-personalvacaciones">
+            <button class="close-button" onclick="closeForm()">✖</button>
+            <div class="form">
+                <div class="form-field">
+                    <label for="diaspersonalvacaciones">Cantidad de días</label>
+                    <input type="number" id="diaspersonalvacaciones">
+                </div>
+                <div class="form-field">
+                    <label for="iniciopersonalvacaciones">Inicio de vacaciones</label>
+                    <input type="date" id="iniciopersonalvacaciones">
+                </div>
+                <div class="form-field">
+                    <label for="finalizacionpersonalvacaciones">Finalización de vacaciones</label>
+                    <input type="date" id="finalizacionpersonalvacaciones">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------Formulario de ingreso Personal-Roles------------------------->
+<div class="container disabled" id="container-roles">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-roles">
+            <ul>
+                <li class="ul-title">PERSONAL ROLES</li>
+                <li>
+                    <span class="point" id="point-roles"></span>
+                    <button onclick="selectSection('roles')" id="side-types">Roles</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('roles')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-roles" onclick="botonModificar('roles')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarRol(document.getElementById('idrol').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarRol()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-roles">
+            <button class="close-button" onclick="closeForm()">✖</button>
+            
+
+            <button class="search iconos" onclick="openFilter('filter-roles')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-roles">
+                <button class="close-filter" onclick="closeFilter('filter-roles')">✖</button>
+                <label class="label-buscar" for="search_inp_roles">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_roles">
+                <div class="result" id="result_roles">
+                    <ul class="searchResults" id="searchResults_roles">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idrol">ID Rol</label>
+                    <input type="number" id="idrol">
+                </div>
+                <div class="form-field">
+                    <label for="nombrerol">Rol</label>
+                    <input type="text" id="nombrerol">
+                </div>
+                <div class="form-field">
+                    <label for="notasrol">Anotaciones</label>
+                    <textarea name="notasrol" maxlength="500" id="notasrol" class="Notas"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------SECCIÓN DE ALIMENTOS------------------------->
+<!-------------------------Formulario de ingreso Alimentos------------------------->
+<div class="container disabled" id="container-alimentos">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-alimentos">
+            <ul>
+                <li class="ul-title">ALIMENTOS</li>
+                <li>
+                    <span class="point" id="point-alimentos"></span>
+                    <button onclick="selectSection('alimentos')" id="side-alimentos">Alimentos</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('alimentos')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-alim" onclick="botonModificar('alimentos')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarAlimentos(document.getElementById('idalimentos').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarAlimentos()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-alimentos">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-alim')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-alim">
+                <button class="close-filter" onclick="closeFilter('filter-alim')">✖</button>
+                <label class="label-buscar" for="search_inp_alim">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_alim">
+                <div class="result" id="result_alim">
+                    <ul class="searchResults" id="searchResults_alim">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idalimentos">ID Alimento</label>
+                    <input type="number" id="idalimentos">
+                </div>
+                <div class="form-field">
+                    <label for="nombrealimentos">Alimento</label>
+                    <input type="text" id="nombrealimentos">
+                </div>
+                <div class="form-field">
+                    <label for="marcaalimentos">Marca</label>
+                    <select type="text" id="marcaalimentos"></select>
+                </div>
+                <div class="form-field">
+                    <label for="rubroalimentos">Rubro</label>
+                    <select type="text" id="rubroalimentos"></select>
+                </div>
+                <div class="form-field">
+                    <label for="cantidadalimentos">Cantidad</label>
+                    <input type="number" id="cantidadalimentos">
+                </div>
+                <div class="form-field">
+                    <label for="ingresoalimentos">Fecha de ingreso</label>
+                    <input type="date" id="ingresoalimentos">
+                </div>
+                <div class="form-field">
+                    <label for="pesoalimentos">Peso</label>
+                    <input type="text" id="pesoalimentos">
+                </div>
+                <div class="form-field">
+                    <label for="vencimientoalimentos">Fecha de vencimiento</label>
+                    <input type="date" id="vencimientoalimentos">
+                </div>   
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------Formulario de ingreso Rubros------------------------->
+<div class="container disabled" id="container-rubros">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-rubros">
+            <ul>
+                <li class="ul-title">RUBROS</li>
+                <li>
+                    <span class="point" id="point-rubros"></span>
+                    <button onclick="selectSection('rubros')" id="side-rubros">Rubros</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('rubros')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-rubro" onclick="botonModificar('rubros')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarRubros(document.getElementById('idrubro').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarRubros()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-rubros">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-rubro')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-rubro">
+                <button class="close-filter" onclick="closeFilter('filter-rubro')">✖</button>
+                <label class="label-buscar" for="search_inp_rubro">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_rubro">
+                <div class="result" id="result_rubro">
+                    <ul class="searchResults" id="searchResults_rubro">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idrubro">ID Rubro</label>
+                    <input type="number" id="idrubro">
+                </div>
+                <div class="form-field">
+                    <label for="nombrerubro">Rubro</label>
+                    <input type="text" id="nombrerubro">
+                </div>
+                <div class="form-field">
+                    <label for="notasrubro">Anotaciones</label>
+                    <textarea name="notasrubro" maxlength="500" id="notasrubro" class="Notas"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------Formulario de ingreso Marcas------------------------->
+<div class="container disabled" id="container-marcas">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-marcas">
+            <ul>
+                <li class="ul-title">MARCAS</li>
+                <li>
+                    <span class="point" id="point-marcas"></span>
+                    <button onclick="selectSection('marcas')" id="side-marcas">Marcas</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('marcas')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-marca" onclick="botonModificar('marcas')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarMarcas(document.getElementById('idmarca').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarMarcas()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-marcas">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-marca')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-marca">
+                <button class="close-filter" onclick="closeFilter('filter-marca')">✖</button>
+                <label class="label-buscar" for="search_inp_marca">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_marca">
+                <div class="result" id="result_marca">
+                    <ul class="searchResults" id="searchResults_marca">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idmarca">ID Marca</label>
+                    <input type="number" id="idmarca">
+                </div>
+                <div class="form-field">
+                    <label for="nombremarca">Marca</label>
+                    <input type="text" id="nombremarca">
+                </div>
+                <div class="form-field">
+                    <label for="notasmarca">Anotaciones</label>
+                    <textarea name="notasmarca" maxlength="500" id="notasmarca" class="Notas"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------Formulario de Preparaciones-Alimentos------------------------->
+<div class="container disabled" id="container-preparations">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-preparations">
+            <ul>
+                <li class="ul-title">PREPARACIONES</li>
+                <li>
+                    <span class="point" id="point-preparations"></span>
+                    <button onclick="selectSection('preparations')" id="side-preparations">Preparaciones</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('preparations')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-prepa" onclick="botonModificar('preparations')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarPreparaciones(document.getElementById('idpreparacion').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarPreparaciones()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+                <!-------------------------revisar api para modificar "guardarDatos"------------------------>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-preparations">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-prepa')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter" SOLO para las preparaciones--------------------->
+            <section class="filter disabled" id="filter-prepa">
+                <button class="close-filter" onclick="closeFilter('filter-prepa')">✖</button>
+                <label class="label-buscar" for="search_inp_prepa">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_prepa">
+                <div class="result" id="result_prepa">
+                    <ul class="searchResults" id="searchResults_prepa">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <!---------------------"section filter" SOLO para los alimentos--------------------->
+            <section class="filter disabled" id="filter-prepaalim">
+                <button class="close-filter" onclick="closeFilter('filter-prepaalim')">✖</button>
+                <label class="label-buscar" for="search_inp_prepaalim">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_prepaalim">
+                <div class="result" id="result_prepaalim">
+                    <ul class="searchResults" id="searchResults_prepaalim">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idpreparacion">ID Preparación</label>
+                    <input type="number" id="idpreparacion">
+                </div>
+                <div class="form-field">
+                    <label for="fechapreparacion">Fecha</label>
+                    <input type="date" id="fechapreparacion">
+                </div>
+                <div class="form-field">
+                    <label for="nombrepreparacion">Nombre preparación</label>
+                    <input type="text" id="nombrepreparacion">
+                </div>
+                <div class="form-field">
+                    <label for="notaspreparacion"></label>
+                    <div id="notaspreparacion" class="Notas">
+                        <ul id="alimentospreparacion">
+
+                        </ul>
+                    </div>
+                    <button class="search iconos prepaalim-btn" id="prepaalim" onclick="openFilter('filter-prepaalim')">
+                        <img src="icons/icons8-búsqueda-24.png" alt="Buscar">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------SECCIÓN DE JUGUETES------------------------->
+<!-------------------------Formulario de ingreso Juguetes------------------------->
+<div class="container disabled" id="container-juguetes">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-juguetes">
+            <ul>
+                <li class="ul-title">JUGUETES</li>
+                <li>
+                    <span class="point" id="point-juguetes"></span>
+                    <button onclick="selectSection('juguetes')" id="side-juguetes">Juguetes</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('juguetes')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-jug" onclick="botonModificar('juguetes')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarJuguetes(document.getElementById('idjuguetes').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarJuguetes()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-juguetes">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-jug')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-jug">
+                <button class="close-filter" onclick="closeFilter('filter-jug')">✖</button>
+                <label class="label-buscar" for="search_inp_jug">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_jug">
+                <div class="result" id="result_jug">
+                    <ul class="searchResults" id="searchResults_jug">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idjuguetes">ID Juguete</label>
+                    <input type="number" id="idjuguetes">
+                </div>
+                <div class="form-field">
+                    <label for="nombrejuguetes">Juguete</label>
+                    <input type="text" id="nombrejuguetes">
+                </div>
+                <div class="form-field">
+                    <label for="tamañojuguetes">Tamaño</label>
+                    <input type="text" id="tamañojuguetes">
+                </div>
+                <div class="form-field">
+                    <label for="edadjuguetes">Edad minima para su uso</label>
+                    <input type="text" id="edadjuguetes" maxlength="2">
+                </div>
+                <div class="form-field">
+                    <label for="ingresojuguetes">Fecha de ingreso</label>
+                    <input type="date" id="ingresojuguetes">
+                </div>
+                <div class="form-field">
+                    <label for="cantidadjuguetes">Cantidad</label>
+                    <input type="number" id="cantidadjuguetes">
+                </div>
+                <div class="form-field">
+                    <label for="tipojuguetes">Tipo</label>
+                    <select  id="tipojuguetes"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------Formulario de ingreso Juguetes-Tipos------------------------->
+<div class="container disabled" id="container-tipojuguete">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-tipojuguete">
+            <ul>
+                <li class="ul-title">TIPOS DE JUGUETES</li>
+                <li>
+                    <span class="point" id="point-tipojuguete"></span>
+                    <button onclick="selectSection('tipojuguete')" id="side-tipojuguete">Tipo</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('tipojuguete')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-tipojuguete" onclick="botonModificar('tipojuguete')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarTipoJuguetes(document.getElementById('idtipojuguete').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarTipoJuguetes()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-tipojuguete">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-tipojuguete')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-tipojuguete">
+                <button class="close-filter" onclick="closeFilter('filter-tipojuguete')">✖</button>
+                <label class="label-buscar" for="search_inp_tipojuguete">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_tipojuguete">
+                <div class="result" id="result_tipojuguete">
+                    <ul class="searchResults" id="searchResults_tipojuguete">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idtipojuguete">ID Tipo</label>
+                    <input type="number" id="idtipojuguete">
+                </div>
+                <div class="form-field">
+                    <label for="nombretipojuguete">Tipo</label>
+                    <input type="text" id="nombretipojuguete">
+                </div>
+                <div class="form-field">
+                    <label for="notastipojuguete">Anotaciones</label>
+                    <textarea name="notastipojuguete" maxlength="500" id="notastipojuguete" class="Notas"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------SECCIÓN DE LIBROS------------------------->
+<!-------------------------Formulario de ingreso Libros------------------------->
+<div class="container disabled" id="container-libros">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-libros">
+            <ul>
+                <li class="ul-title">LIBROS</li>
+                <li>
+                    <span class="point" id="point-libros"></span>
+                    <button onclick="selectSection('libros')" id="side-libros">Libro</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('libros')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-libro" onclick="botonModificar('libros')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarLibros(document.getElementById('idlibros').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarLibros()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-libros">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-libro')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-libro">
+                <button class="close-filter" onclick="closeFilter('filter-libro')">✖</button>
+                <label class="label-buscar" for="search_inp_libro">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_libro">
+                <div class="result" id="result_libro">
+                    <ul class="searchResults" id="searchResults_libro">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idlibros">ID Libro</label>
+                    <input type="number" id="idlibros">
+                </div>
+                <div class="form-field">
+                    <label for="nombrelibros">Libro</label>
+                    <input type="text" id="nombrelibros">
+                </div>
+                <div class="form-field">
+                    <label for="cantidadlibros">Cantidad</label>
+                    <input type="text" id="cantidadlibros">
+                </div>
+                <div class="form-field">
+                    <label for="ingresolibros">Fecha de ingreso</label>
+                    <input type="date" id="ingresolibros">
+                </div>
+                <div class="form-field">
+                    <label for="catlibros">Categoría</label>
+                    <select id="catlibros"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------Formulario de ingreso Libros-Categorías------------------------->
+<div class="container disabled" id="container-tipolibro">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-tipolibro">
+            <ul>
+                <li class="ul-title">CATEGORIAS</li>
+                <li>
+                    <span class="point" id="point-tipolibro"></span>
+                    <button onclick="selectSection('tipolibro')" id="side-tipolibro">Categorías</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('tipolibro')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-tipolibro" onclick="botonModificar('tipolibro')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarCategorias(document.getElementById('idtipolibro').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarCategorias()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-tipolibro">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-tipolibro')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-tipolibro">
+                <button class="close-filter" onclick="closeFilter('filter-tipolibro')">✖</button>
+                <label class="label-buscar" for="search_inp_tipolibro">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_tipolibro">
+                <div class="result" id="result_tipolibro">
+                    <ul class="searchResults" id="searchResults_tipolibro">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idtipolibro">ID Categoría</label>
+                    <input type="number" id="idtipolibro">
+                </div>
+                <div class="form-field">
+                    <label for="nombretipolibro">Categoría</label>
+                    <input type="text" id="nombretipolibro">
+                </div>
+                <div class="form-field">
+                    <label for="notastipolibro">Anotaciones</label>
+                    <textarea name="notastipolibro" maxlength="500" id="notastipolibro" class="Notas"></textarea>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------SECCIÓN DE DONACIONES------------------------->
+<!-------------------------Formulario de ingreso Donaciones------------------------->
+<div class="container disabled" id="container-donaciones">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-donaciones">
+            <ul>
+                <li class="ul-title">DONACIONES</li>
+                <li>
+                    <span class="point" id="point-donaciones"></span>
+                    <button onclick="selectSection('donaciones')" id="side-donaciones">Donación</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('donaciones')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-dona" onclick="botonModificar('donaciones')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarDonaciones(document.getElementById('iddonacion').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarDonaciones()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-donaciones">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-dona')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-dona">
+                <button class="close-filter" onclick="closeFilter('filter-dona')">✖</button>
+                <label class="label-buscar" for="search_inp_dona">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_dona">
+                <div class="result" id="result_dona">
+                    <ul class="searchResults" id="searchResults_dona">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="iddonacion">ID Donacion</label>
+                    <input type="number" id="iddonacion">
+                </div>
+                <div class="form-field">
+                    <label for="colaboradordonaciones">ID Colaborador</label>
+                    <input type="number" id="colaboradordonaciones">
+                </div>
+                <div class="form-field">
+                    <label for="tipodonaciones">Tipo de donación</label>
+                    <select id="tipodonaciones"></select>
+                </div>
+                <div class="form-field">
+                    <label for="cantidaddonaciones">Cantidad</label>
+                    <input type="number" id="cantidaddonaciones">
+                </div>
+                <div class="form-field">
+                    <label for="montodonaciones">Monto</label>
+                    <input type="number" id="montodonaciones">
+                </div>
+                <div class="form-field">
+                    <label for="fechadonaciones">Fecha de donación</label>
+                    <input type="date" id="fechadonaciones">
+                </div>
+                <div class="form-field">
+                    <label for="descripciondonaciones">Descripción</label>
+                    <textarea name="descripciondonaciones" maxlength="500" id="descripciondonaciones" class="Notas"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------Formulario de ingreso Donaciones-Tipos------------------------->
+<div class="container disabled" id="container-tipodonacion">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-tipodonacion">
+            <ul>
+                <li class="ul-title">TIPOS DE DONACIONES</li>
+                <li>
+                    <span class="point" id="point-tipodonacion"></span>
+                    <button onclick="selectSection('tipodonacion')" id="side-tipodonacion">Tipo</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('tipodonacion')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-tipodona" onclick="botonModificar('tipodonacion')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarTipoDonacion(document.getElementById('idtipodonacion').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarTipoDonacion()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-tipodonacion">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-tipodona')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-tipodona">
+                <button class="close-filter" onclick="closeFilter('filter-tipodona')">✖</button>
+                <label class="label-buscar" for="search_inp_tipodona">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_tipodona">
+                <div class="result" id="result_tipodona">
+                    <ul class="searchResults" id="searchResults_tipodona">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idtipodonacion">ID Tipo</label>
+                    <input type="number" id="idtipodonacion">
+                </div>
+                <div class="form-field">
+                    <label for="nombretipodonacion">Tipo</label>
+                    <input type="text" id="nombretipodonacion">
+                </div>
+                <div class="form-field">
+                    <label for="notastipodonacion">Anotaciones</label>
+                    <textarea name="notastipodonacion" maxlength="500" id="notastipodonacion" class="Notas"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------Formulario de Donaciones - Salidas ------------------------->
+<div class="container disabled" id="container-donations-outputs">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-donations-outputs">
+            <ul>
+                <li class="ul-title">SALIDAS</li>
+                <li>
+                    <span class="point" id="point-donations-outputs"></span>
+                    <button onclick="selectSection('donations-outputs')" id="side-donations-outputs">Salidas</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('donations-outputs')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-salidadona" onclick="botonModificar('donations-outputs')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarSalidas(document.getElementById('idsalida').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarSalidas()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+                <!-------------------------agregar en api salidas para modificar "guardarDatos"------------------------>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-donations-outputs">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-salidadona')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter" SOLO para las salidas--------------------->
+            <section class="filter disabled" id="filter-salidadona">
+                <button class="close-filter" onclick="closeFilter('filter-salidadona')">✖</button>
+                <label class="label-buscar" for="search_inp_salidadona">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_salidadona">
+                <div class="result" id="result_salidadona">
+                    <ul class="searchResults" id="searchResults_salidadona">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <!---------------------"section filter" SOLO para los artículos de salida--------------------->
+            <section class="filter disabled" id="filter-salidadonacion">
+                <button class="close-filter" onclick="closeFilter('filter-salidadonacion')">✖</button>
+                <label class="label-buscar" for="search_inp_salidadonacion">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_salidadonacion">
+                <div class="result" id="result_salidadonacion">
+                    <ul class="searchResults" id="searchResults_salidadonacion">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idsalida">ID Salida</label>
+                    <input type="number" id="idsalida">
+                </div>
+                <div class="form-field">
+                    <label for="fechasalida">Fecha</label>
+                    <input type="date" id="fechasalida">
+                </div>
+                <div class="form-field">
+                    <label for="destinosalida">Recibió</label>
+                    <input type="text" id="destinosalida">
+                </div>
+                <div class="form-field">
+                    <label for="notassalida"></label>
+                    <div id="notassalida" class="Notas">
+                        <ul id="donacionessalidas">
+
+                        </ul>
+                    </div>
+                    <button class="search iconos salidadonacion-btn" id="salidadonacion" onclick="openFilter('filter-salidadonacion')">
+                        <img src="icons/icons8-búsqueda-24.png" alt="Buscar">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------SECCIÓN DE USUARIOS------------------------->
+<!-------------------------Formulario de ingreso Usuarios------------------------->
+<div class="container disabled" id="container-usuarios">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-usuarios">
+            <ul>
+                <li class="ul-title">USUARIOS</li>
+                <li>
+                    <span class="point" id="point-usuarios"></span>
+                    <button onclick="selectSection('usuarios')" id="side-usuarios">Usuario</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('usuarios')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-usuario" onclick="botonModificar('usuarios')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarUsuarios(document.getElementById('idusuarios').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarUsuarios()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-usuarios">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-usuario')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-usuario">
+                <button class="close-filter" onclick="closeFilter('filter-usuario')">✖</button>
+                <label class="label-buscar" for="search_inp_usuario">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_usuario">
+                <div class="result" id="result_usuario">
+                    <ul class="searchResults" id="searchResults_usuario">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idusuarios">ID Usuario</label>
+                    <input type="number" id="idusuarios">
+                </div>
+                <div class="form-field">
+                    <label for="nombreusuarios">Usuario</label>
+                    <input type="text" id="nombreusuarios">
+                </div>
+                <div class="form-field">
+                    <label for="contraseñausuarios">Contraseña</label>
+                    <input type="text" id="contraseñausuarios">
+                </div>
+                <div class="form-field">
+                    <label for="tipousuarios">Tipo</label>
+                    <select id="tipousuarios"></select>
+                </div>
+                <div class="form-field">
+                    <label for="altausuario">Fecha de alta</label>
+                    <input type="date" id="altausuario">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------Formulario de ingreso Usuarios-Tipos------------------------->
+<div class="container disabled" id="container-tipousuario">
+    <div class="form-separation">
+        <div class="sidebar" id="sidebar-tipousuario">
+            <ul>
+                <li class="ul-title">TIPOS DE USUARIOS</li>
+                <li>
+                    <span class="point" id="point-tipousuario"></span>
+                    <button onclick="selectSection('tipousuario')" id="side-tipousuario">Tipo</button>
+                </li>
+            </ul>
+            <div class="actions">
+                <button onclick="botonAgregar('tipousuario')"><img class="iconos" src="icons/icons8-más-50.png"></button>
+                <button id="editar-tipousua" onclick="botonModificar('tipousuario')"><img class="iconos" src="icons/icons8-editar-archivo-de-texto-48.png"></button>
+                <button onclick="borrarTipoUsuario(document.getElementById('idtipousuario').value)"><img class="iconos" src="icons/icons8-basura-50.png"></button>
+                <button class="avatar" onclick="guardarTipoUsuario()"><img class="iconos2" src="icons/icons8-carpeta-64.png"></button>
+            </div>
+        </div>
+
+        <div class="form-container" id="form-container-tipousuario">
+            <button class="close-button" onclick="closeForm()">✖</button>
+
+            <button class="search iconos" onclick="openFilter('filter-tipousua')"><img src="icons/icons8-búsqueda-24.png"></button>
+            <!---------------------"section filter"--------------------->
+            <section class="filter disabled" id="filter-tipousua">
+                <button class="close-filter" onclick="closeFilter('filter-tipousua')">✖</button>
+                <label class="label-buscar" for="search_inp_tipousua">Buscar</label>
+                <input type="text" class="search_inp" id="search_inp_tipousua">
+                <div class="result" id="result_tipousua">
+                    <ul class="searchResults" id="searchResults_tipousua">
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <div class="form">
+                <div class="form-field">
+                    <label for="idtipousuario">ID Tipo</label>
+                    <input type="number" id="idtipousuario">
+                </div>
+                <div class="form-field">
+                    <label for="nombretipousuario">Tipo</label>
+                    <input type="text" id="nombretipousuario">
+                </div>
+                <div class="form-field">
+                    <label for="notastipousuario">Anotaciones</label>
+                    <textarea name="notastipousuario" maxlength="500" id="notastipousuario" class="Notas"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+<script src="js/index.js"></script>
+<script src="js/API_s.js"></script>
+</html>

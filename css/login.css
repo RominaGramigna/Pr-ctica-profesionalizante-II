@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins';
+}
+
+body {
+    background-image: url(../img/fondo\ login.jpg);
+    font-family: sans-serif;
+    background-color: #f0f8ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+.principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    bottom: 15%;
+}
+
+.container {
+    background-color: #fffbe9b5;
+    padding: 40px;
+    border: 1px solid #9C8626;
+    border-radius: 12px;
+    width: 559px;
+    height: 339px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user {
+    background-color: #C0B07C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 10%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+img {
+    width: 100px;
+}
+
+form {
+    position: relative;
+    top: 18%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 34px;
+}
+
+.cajita {
+    width: 44px;
+    height: 44px;
+    background-color: #9B8F66;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.iconito {
+    width: 30px;
+    height: 30px;
+}
+
+.usuario, .contraseña {
+    width: 309px;
+    height: 44px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #9C8626;
+    background-color: #c0b07cb6;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding-left: 50px;
+    outline: none;
+}
+
+button {
+    position: relative;
+    top: 22.1%;
+    background-color: #fffbe9b5;
+    color: #4C441E;
+    padding: 12px 20px;
+    border: 1px solid #9C8626;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 260px;
+    height: 42px;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #9C8626;
+    color: #fffbe9b5;
+}
